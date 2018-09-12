@@ -30,7 +30,8 @@ from . import PushService
 import json
 import requests
 
-GCM_ENDPOINT = 'https://android.googleapis.com/gcm/send'
+#GCM_ENDPOINT = 'https://android.googleapis.com/gcm/send'
+GCM_ENDPOINT = 'https://fcm.googleapis.com/fcm/send'
 
 class GCMException(Exception): pass
 
@@ -60,6 +61,7 @@ class GCMClient(PushService):
 
     def build_request(self, regids, data, collapse_key, ttl):
         payload = {'registration_ids': regids}
+        payload = {'to': regids[0]}
         if data:
             payload['data'] = data
 
