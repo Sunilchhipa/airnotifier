@@ -73,8 +73,11 @@ def process_pushnotification_payload(data):
                 "usertoid": usertoid,
                 "courseid": courseid,
                 "notificationtype": notificationtype,
-                "moduleid": moduleid
-            }
+                "moduleid": moduleid,
+                "android_channel_id": "PushPluginChannel",
+                "notId": str(random.randint(1, 1000000))
+            },
+            "priority": "high",
         },
         "apns": {
             "payload": {
