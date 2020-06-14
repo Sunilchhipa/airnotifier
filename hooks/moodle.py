@@ -7,16 +7,11 @@ HUBURL = "https://moodle.net/local/sitecheck/check.php"
 
 def process_pushnotification_payload(data):
     extra = data.get("extra", {})
-    userfrom = extra.get("userfromfullname", None)
-    usertoid = extra.get("usertoid", None)
     site = extra.get("site", None)
     timecreated = extra.get("timecreated", None)
     message = extra.get("smallmessage", None)
     notif = extra.get("notification", None)
     title = extra.get("sitefullname", None)
-    courseid = extra.get("courseid", None)
-    notificationtype = extra.get("notificationtype", None)
-    moduleid = extra.get("moduleid", None)
 
     if not message:
         message = extra.get("fullmessage", None)
@@ -28,23 +23,13 @@ def process_pushnotification_payload(data):
     device = data.get('device', None).lower()
     if device == "android-fcm" or device == "ios-fcm":
         data["device"] = "fcm"
-        # fcm only support string in data payload
-        if moduleid == False or moduleid is None:
-            moduleid = ''
-        if courseid == False or courseid is None:
-            courseid = ''
 
     data["gcm"] = {
         "data": {
             "title": title,
             "site": site,
-            "userfrom": userfrom,
-            "usertoid": usertoid,
             "notif": notif,
-            "notId": random.randint(1, 1000000),
-            "courseid": courseid,
-            "notificationtype": notificationtype,
-            "moduleid": moduleid
+            "notId": random.randint(1, 1000000)
         }
     }
 
@@ -52,12 +37,7 @@ def process_pushnotification_payload(data):
         "custom": {
             "title": title,
             "site": site,
-            "userfrom": userfrom,
-            "usertoid": usertoid,
-            "notif": notif,
-            "courseid": courseid,
-            "notificationtype": notificationtype,
-            "moduleid": moduleid
+            "notif": notif
         }
     }
 
@@ -69,11 +49,6 @@ def process_pushnotification_payload(data):
                 "body": message,
                 "title": '',
                 "site": site,
-                "userfrom": userfrom,
-                "usertoid": usertoid,
-                "courseid": courseid,
-                "notificationtype": notificationtype,
-                "moduleid": moduleid,
                 "android_channel_id": "PushPluginChannel",
                 "notId": str(random.randint(1, 1000000))
             },
@@ -86,12 +61,7 @@ def process_pushnotification_payload(data):
                     "alert": {
                         "body": message,
                         "title": '',
-                        "site": site,
-                        "userfrom": userfrom,
-                        "usertoid": usertoid,
-                        "courseid": courseid,
-                        "notificationtype": notificationtype,
-                        "moduleid": moduleid
+                        "site": site
                     }
                 }
             }
