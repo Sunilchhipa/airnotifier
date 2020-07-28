@@ -75,11 +75,12 @@ def process_pushnotification_payload(data):
                     }
                 }
             }
-        }
+        },
+        "data": extra
     }
 
     if "alert" not in data:
-        data["alert"] = message
+        data["alert"] = {"body": message, "title": title}
 
     if not "wns" in extra:
         data["extra"]["wns"] = {
