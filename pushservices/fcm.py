@@ -65,7 +65,7 @@ class FCMClient(PushService):
             }
 
         # custom indepth - we already have required data in payload, don't add it again
-        #data["extra"] = extra
+        data["extra"] = extra
         # setting alert to None so that there is only 'data' payload in fcm notification as there are some issues
         # with 'notification' payload with Android (It doesn't listed to $cordovaPushV5:notificationReceived
         # event when App is closed)
