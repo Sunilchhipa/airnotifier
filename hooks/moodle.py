@@ -14,12 +14,12 @@ def process_pushnotification_payload(data):
     message = extra.get("smallmessage", None)
     notif = extra.get("notification", None)
     title = extra.get("sitefullname", None)
-    component = extra.get("component", None)
-    name = extra.get("name", None)
-    wwwroot = extra.get("wwwroot", None)
-    conversationtype = extra.get("conversationtype", None)
-    courseid = extra.get("courseid", None)
-    contexturl = extra.get("contexturl", None)
+    component = extra.get("component", '')
+    name = extra.get("name", '')
+    wwwroot = extra.get("wwwroot", '')
+    conversationtype = extra.get("conversationtype", '')
+    courseid = extra.get("courseid", '')
+    contexturl = extra.get("contexturl", '')
 
     if not message:
         message = extra.get("fullmessage", None)
