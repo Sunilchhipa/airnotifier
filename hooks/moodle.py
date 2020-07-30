@@ -14,12 +14,6 @@ def process_pushnotification_payload(data):
     message = extra.get("smallmessage", None)
     notif = extra.get("notification", None)
     title = extra.get("sitefullname", None)
-    component = extra.get("component", None)
-    name = extra.get("name", None)
-    wwwroot = extra.get("wwwroot", None)
-    conversationtype = extra.get("conversationtype", None)
-    courseid = extra.get("courseid", None)
-    contexturl = extra.get("contexturl", None)
 
     if not message:
         message = extra.get("fullmessage", None)
@@ -32,20 +26,6 @@ def process_pushnotification_payload(data):
     if device == "android-fcm" or device == "ios-fcm":
         data["device"] = "fcm"
 
-    # fcm only support string in data payload
-    if component == False or component is None:
-        component = ''
-    if name == False or name is None:
-        name = ''
-    if wwwroot == False or wwwroot is None:
-        wwwroot = ''
-    if conversationtype == False or conversationtype is None:
-        conversationtype = ''
-    if courseid == False or courseid is None:
-        courseid = ''
-    if contexturl == False or contexturl is None:
-        contexturl = ''
-
     data["gcm"] = {
         "data": {
             "title": title,
@@ -53,13 +33,7 @@ def process_pushnotification_payload(data):
             "userfrom": userfrom,
             "usertoid": usertoid,
             "notif": notif,
-            "notId": random.randint(1, 1000000),
-            "component": component,
-            "name": name,
-            "wwwroot": wwwroot,
-            "conversationtype": conversationtype,
-            "courseid": courseid,
-            "contexturl": contexturl,
+            "notId": random.randint(1, 1000000)
         }
     }
 
@@ -69,13 +43,7 @@ def process_pushnotification_payload(data):
             "site": site,
             "userfrom": userfrom,
             "usertoid": usertoid,
-            "notif": notif,
-            "component": component,
-            "name": name,
-            "wwwroot": wwwroot,
-            "conversationtype": conversationtype,
-            "courseid": courseid,
-            "contexturl": contexturl,
+            "notif": notif
         }
     }
 
@@ -91,13 +59,7 @@ def process_pushnotification_payload(data):
                 "usertoid": usertoid,
                 "android_channel_id": "PushPluginChannel",
                 "notId": str(random.randint(1, 1000000)),
-                "notif": notif,
-                "component": component,
-                "name": name,
-                "wwwroot": wwwroot,
-                "conversationtype": conversationtype,
-                "courseid": courseid,
-                "contexturl": contexturl,
+                "notif": notif
             },
             "priority": "high",
         },
@@ -111,13 +73,7 @@ def process_pushnotification_payload(data):
                         "site": site,
                         "userfrom": userfrom,
                         "usertoid": usertoid,
-                        "notif": notif,
-                        "component": component,
-                        "name": name,
-                        "wwwroot": wwwroot,
-                        "conversationtype": conversationtype,
-                        "courseid": courseid,
-                        "contexturl": contexturl,
+                        "notif": notif
                     }
                 }
             }
