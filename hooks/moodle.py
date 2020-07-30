@@ -14,12 +14,12 @@ def process_pushnotification_payload(data):
     message = extra.get("smallmessage", None)
     notif = extra.get("notification", None)
     title = extra.get("sitefullname", None)
-    component = extra.get("component", '')
-    name = extra.get("name", '')
-    wwwroot = extra.get("wwwroot", '')
-    conversationtype = extra.get("conversationtype", '')
-    courseid = extra.get("courseid", '')
-    contexturl = extra.get("contexturl", '')
+    component = extra.get("component", None)
+    name = extra.get("name", None)
+    wwwroot = extra.get("wwwroot", None)
+    conversationtype = extra.get("conversationtype", None)
+    courseid = extra.get("courseid", None)
+    contexturl = extra.get("contexturl", None)
 
     if not message:
         message = extra.get("fullmessage", None)
@@ -31,6 +31,20 @@ def process_pushnotification_payload(data):
     device = data.get('device', None).lower()
     if device == "android-fcm" or device == "ios-fcm":
         data["device"] = "fcm"
+
+    # fcm only support string in data payload
+    if component == False or component is None:
+        component = ''
+    if name == False or name is None:
+        name = ''
+    if wwwroot == False or wwwroot is None:
+        wwwroot = ''
+    if conversationtype == False or conversationtype is None:
+        conversationtype = ''
+    if courseid == False or courseid is None:
+        courseid = ''
+    if contexturl == False or contexturl is None:
+        contexturl = ''
 
     data["gcm"] = {
         "data": {
