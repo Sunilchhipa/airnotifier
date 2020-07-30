@@ -45,7 +45,7 @@ def process_pushnotification_payload(data):
             "wwwroot": wwwroot,
             "conversationtype": conversationtype,
             "courseid": courseid,
-            "contexturl": contexturl
+            "contexturl": contexturl,
         }
     }
 
@@ -61,7 +61,7 @@ def process_pushnotification_payload(data):
             "wwwroot": wwwroot,
             "conversationtype": conversationtype,
             "courseid": courseid,
-            "contexturl": contexturl
+            "contexturl": contexturl,
         }
     }
 
@@ -83,7 +83,7 @@ def process_pushnotification_payload(data):
                 "wwwroot": wwwroot,
                 "conversationtype": conversationtype,
                 "courseid": courseid,
-                "contexturl": contexturl
+                "contexturl": contexturl,
             },
             "priority": "high",
         },
@@ -103,7 +103,7 @@ def process_pushnotification_payload(data):
                         "wwwroot": wwwroot,
                         "conversationtype": conversationtype,
                         "courseid": courseid,
-                        "contexturl": contexturl
+                        "contexturl": contexturl,
                     }
                 }
             }
