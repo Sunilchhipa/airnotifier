@@ -14,6 +14,12 @@ def process_pushnotification_payload(data):
     message = extra.get("smallmessage", None)
     notif = extra.get("notification", None)
     title = extra.get("sitefullname", None)
+    component = extra.get("component", None)
+    name = extra.get("name", None)
+    wwwroot = extra.get("wwwroot", None)
+    conversationtype = extra.get("conversationtype", None)
+    courseid = extra.get("courseid", None)
+    contexturl = extra.get("contexturl", None)
 
     if not message:
         message = extra.get("fullmessage", None)
@@ -33,7 +39,13 @@ def process_pushnotification_payload(data):
             "userfrom": userfrom,
             "usertoid": usertoid,
             "notif": notif,
-            "notId": random.randint(1, 1000000)
+            "notId": random.randint(1, 1000000),
+            "component": component,
+            "name": name,
+            "wwwroot": wwwroot,
+            "conversationtype": conversationtype,
+            "courseid": courseid,
+            "contexturl": contexturl
         }
     }
 
@@ -43,7 +55,13 @@ def process_pushnotification_payload(data):
             "site": site,
             "userfrom": userfrom,
             "usertoid": usertoid,
-            "notif": notif
+            "notif": notif,
+            "component": component,
+            "name": name,
+            "wwwroot": wwwroot,
+            "conversationtype": conversationtype,
+            "courseid": courseid,
+            "contexturl": contexturl
         }
     }
 
@@ -58,7 +76,14 @@ def process_pushnotification_payload(data):
                 "userfrom": userfrom,
                 "usertoid": usertoid,
                 "android_channel_id": "PushPluginChannel",
-                "notId": str(random.randint(1, 1000000))
+                "notId": str(random.randint(1, 1000000)),
+                "notif": notif,
+                "component": component,
+                "name": name,
+                "wwwroot": wwwroot,
+                "conversationtype": conversationtype,
+                "courseid": courseid,
+                "contexturl": contexturl
             },
             "priority": "high",
         },
@@ -72,11 +97,17 @@ def process_pushnotification_payload(data):
                         "site": site,
                         "userfrom": userfrom,
                         "usertoid": usertoid,
+                        "notif": notif,
+                        "component": component,
+                        "name": name,
+                        "wwwroot": wwwroot,
+                        "conversationtype": conversationtype,
+                        "courseid": courseid,
+                        "contexturl": contexturl
                     }
                 }
             }
-        },
-        "data": extra
+        }
     }
 
     if "alert" not in data:
