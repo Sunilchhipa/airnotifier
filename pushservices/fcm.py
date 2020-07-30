@@ -85,10 +85,10 @@ class FCMClient(PushService):
             payload["message"]["data"] = self.format_values(data)
 
         if android:
-            payload["message"]["android"] = android
+            payload["message"]["android"] = self.format_values(android)
 
         if apns:
-            payload["message"]["apns"] = apns
+            payload["message"]["apns"] = self.format_values(apns)
 
         return json.dumps(payload)
 
